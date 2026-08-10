@@ -1,0 +1,14 @@
+@import url('https://cdn.jsdelivr.net/npm/vazirmatn@33.003.1/Vazirmatn-Variable-font-face.css');
+@import 'tailwindcss';
+
+* {
+  font-family: 'Vazirmatn', sans-serif;
+}
+* {
+  box-sizing: border-box;
+}
+
+body {
+  direction: rtl;
+  background-color: #fafafa;
+}
