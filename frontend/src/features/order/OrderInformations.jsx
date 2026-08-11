@@ -1,46 +1,62 @@
-import { FaWpforms } from "react-icons/fa6";
-import { toPersianDigits } from "../../utils/price";
+import { FaWpforms } from 'react-icons/fa6';
+import { toPersianDigits } from '../../utils/price';
 
 export default function OrderInformations({ data }) {
-    return (
-        <div className=" bg-red-50 p-8 min-h-100 flex flex-col justify-between min-w-140 rounded-2xl border border-red-200">
-            <div className="flex pb-2 border-b border-red-100 justify-start items-center gap-2">
-                <span className="bg-red-700 p-2 rounded-full">
-                    <FaWpforms color="white" />
-                </span>
-                <p className="text-red-700">اطلاعات سفارش</p>
-            </div>
+  return (
+    <div className="min-h-100 rounded-2xl border border-red-200 bg-red-50 p-4 sm:p-6 lg:p-8 flex flex-col justify-between gap-4 sm:gap-5">
+      {/* Header */}
+      <div className="flex items-center justify-start gap-2 border-b border-red-100 pb-3">
+        <span className="rounded-full bg-red-700 p-2">
+          <FaWpforms color="white" />
+        </span>
 
-            <div className="flex pb-2 border-b border-red-100 justify-between items-center">
-                <p className="text-sm text-stone-700">تاریخ ثبت سفارش:</p>
-                <p className="text-sm text-stone-700">{data.createdAt}</p>
-            </div>
+        <p className="text-sm font-medium text-red-700 sm:text-base">
+          اطلاعات سفارش
+        </p>
+      </div>
 
-            <div className="flex  pb-2 border-b border-red-100 justify-between items-center">
-                <p className="text-sm text-stone-700">وضعیت سفارش:</p>
-                <p className="text-sm text-stone-700">{data.status}</p>
-            </div>
+      {/* Created At */}
+      <div className="flex items-center justify-between gap-4 border-b border-red-100 pb-3">
+        <p className="text-xs text-stone-700 sm:text-sm">تاریخ ثبت سفارش:</p>
 
-            <div className="flex  pb-2 border-b border-red-100 justify-between items-center">
-                <p className="text-sm text-stone-700">الویت سفارش:</p>
-                <p className="text-sm text-stone-700">
-                    {data.priority ? "⭐دارد" : "ندارد"}
-                </p>
-            </div>
+        <p className="text-xs text-stone-700 sm:text-sm text-left">
+          {data.createdAt}
+        </p>
+      </div>
 
-            <div className="flex pb-2 border-b border-red-100 justify-between items-center">
-                <p className="text-sm text-stone-700"> روش ارسال:</p>
-                <p className="text-sm text-stone-700">
-                    {data.priority ? "ارسال سریع" : "ارسال معمولی"}
-                </p>
-            </div>
+      {/* Status */}
+      <div className="flex items-center justify-between gap-4 border-b border-red-100 pb-3">
+        <p className="text-xs text-stone-700 sm:text-sm">وضعیت سفارش:</p>
 
-            <div className="flex pb-2 border-b border-red-100 justify-between items-center">
-                <p className="text-sm text-stone-700"> هزینه الویت:</p>
-                <p className="text-sm text-stone-700">
-                    {toPersianDigits(data.priorityPrice)}
-                </p>
-            </div>
-        </div>
-    );
+        <p className="text-xs text-stone-700 sm:text-sm">{data.status}</p>
+      </div>
+
+      {/* Priority */}
+      <div className="flex items-center justify-between gap-4 border-b border-red-100 pb-3">
+        <p className="text-xs text-stone-700 sm:text-sm">اولویت سفارش:</p>
+
+        <p className="text-xs text-stone-700 sm:text-sm">
+          {data.priority ? '⭐ دارد' : 'ندارد'}
+        </p>
+      </div>
+
+      {/* Delivery */}
+      <div className="flex items-center justify-between gap-4 border-b border-red-100 pb-3">
+        <p className="text-xs text-stone-700 sm:text-sm">روش ارسال:</p>
+
+        <p className="text-xs text-stone-700 sm:text-sm">
+          {data.priority ? 'ارسال سریع' : 'ارسال معمولی'}
+        </p>
+      </div>
+
+      {/* Priority Price */}
+      <div className="flex items-center justify-between gap-4 border-b border-red-100 pb-3">
+        <p className="text-xs text-stone-700 sm:text-sm">هزینه اولویت:</p>
+
+        <p className="text-xs text-stone-700 sm:text-sm">
+          {toPersianDigits(data.priorityPrice)}
+        </p>
+      </div>
+    </div>
+  );
 }
