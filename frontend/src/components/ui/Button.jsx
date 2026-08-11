@@ -1,9 +1,9 @@
 export default function Button({ children, variant, onClick }) {
     const baseStyle =
-        "px-4 py-2 flex justify-center transition-all gap-2 cursor-pointer duration-300 w-40 items-center rounded border border-red-500";
+        "px-4 py-2 flex justify-center transition-all gap-2 cursor-pointer w-full duration-300 w-40 items-center rounded border border-red-500";
 
     const variantStyle = {
-        primary: "bg-white text-red-500 hover:bg-red-500 hover:text-white ",
+        primary: "bg-white text-red-500 hover:bg-red-500 hover:text-white  ",
         secondary: "bg-red-500 text-white hover:bg-white hover:text-red-500",
     };
 

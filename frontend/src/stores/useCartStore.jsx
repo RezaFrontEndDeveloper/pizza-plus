@@ -32,7 +32,7 @@ export const useCartStore = create((set) => ({
     decreaseQuantity: (pizzaId) =>
         set((state) => ({
             cart: state.cart.map((item) =>
-                item.id === pizzaId
+                item.id === pizzaId && item.quantity > 1
                     ? { ...item, quantity: item.quantity - 1 }
                     : item
             ),
@@ -47,9 +47,9 @@ export const useCartStore = create((set) => ({
             ),
         })),
 
-    deletePizza: (pizza) =>
+    deletePizza: (pizzaId) =>
         set((state) => ({
-            cart: state.card.filter((item) => item.id !== pizza.id),
+            cart: state.cart.filter((item) => item.id !== pizzaId),
         })),
 
     clearCart: () => set({ cart: [] }),

@@ -3,6 +3,6 @@ export const toPersianDigits = (value) =>
 
 export const totalPrice = (array) => {
     return array.reduce((acc, pizza) => {
-        return acc + pizza.price;
+        return acc + pizza.price * pizza.quantity;
     }, 0);
 };

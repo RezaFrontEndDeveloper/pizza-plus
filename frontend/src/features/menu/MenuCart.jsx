@@ -24,7 +24,7 @@ export default function MenuCart({ pizza }) {
             <p className="text-xl text-stone-700 font-bold">{name}</p>
             <p className="text-stone-600 text-md">{ingredients}</p>
             {soldOut ? (
-                <p>SODL OUT</p>
+                <p>به اتمام رسیده</p>
             ) : (
                 <p className="text-red-500 font-bold">
                     {toPersianDigits(price)} تومان
@@ -33,7 +33,7 @@ export default function MenuCart({ pizza }) {
 
             {!soldOut ? (
                 <Button variant={"primary"} onClick={handleAddToCart}>
-                    ADD TO CART
+                    اضافه کن
                 </Button>
             ) : null}
         </div>

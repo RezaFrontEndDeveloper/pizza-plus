@@ -13,7 +13,7 @@ export default function MenuSection() {
     if (isError) return <p>{error.message}</p>;
 
     return (
-        <div className="grid w-full mx-4 grid-cols-1 gap-8 sm:grid-cols-2 md:grid-cols-3 bg-stone-100 p-4">
+        <div className="mx-auto grid w-full max-w-7xl grid-cols-1 gap-8 rounded bg-stone-100 p-4 sm:grid-cols-2 md:grid-cols-3">
             {data.map((pizza) => (
                 <MenuCart pizza={pizza} key={pizza.id} />
             ))}

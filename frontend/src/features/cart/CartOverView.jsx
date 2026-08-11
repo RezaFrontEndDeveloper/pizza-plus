@@ -21,25 +21,37 @@ export default function CartOverView() {
                     </Button>
                 </Link>
             </div>
-            <div className="flex  justify-center items-center gap-8">
-                <div>
-                    <p className="text-sm sm:md md:lg">
-                        {toPersianDigits(cartLength)} آیتم در سبد خرید شما
-                    </p>
-                    <p className="text-red-500 text-sm sm:md md:lg md:text-lg font-bold">
-                        {toPersianDigits(total)}تومان
-                    </p>
-                </div>
-
-                <div>
-                    <div className="bg-red-200 rounded p-4 relative hover:bg-red-100 transition-all duration-300">
-                        <p className="absolute flex justify-center itemc text-sm top-0 right-0 bg-red-500 px-2 py-0.5 text-white rounded-full">
-                            3
+            {!cart.length ? (
+                <p className="text-stone-700 font-bold text-sm">
+                    سبد خرید شما خالی است{" "}
+                </p>
+            ) : (
+                <div className="flex  justify-center items-center gap-8">
+                    <div>
+                        <p className="text-sm sm:md md:lg">
+                            {toPersianDigits(cartLength)} آیتم در سبد خرید شما
                         </p>
-                        <BsBasket3 size={25} color="red" />
+
+                        <div className="flex items-center gap-1">
+                            <p className="text-red-500 text-sm sm:md md:lg md:text-lg font-bold">
+                                {toPersianDigits(total)}
+                            </p>
+                            <span className="text-sm font-bold text-red-500">
+                                تومان
+                            </span>
+                        </div>
+                    </div>
+
+                    <div>
+                        <div className="bg-red-200 rounded p-4 relative hover:bg-red-100 transition-all duration-300">
+                            <p className="absolute flex justify-center itemc text-sm top-0 right-0 bg-red-500 px-2 py-0.5 text-white rounded-full">
+                                {toPersianDigits(cartLength)}
+                            </p>
+                            <BsBasket3 size={25} color="red" />
+                        </div>
                     </div>
                 </div>
-            </div>
+            )}
         </div>
     );
 }
