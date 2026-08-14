@@ -1,12 +1,13 @@
-import { CiUser } from "react-icons/ci";
-import { useUserStore } from "../../stores/useUserStore";
+import { CiUser } from 'react-icons/ci';
+import { useUserStore } from '../../stores/useUserStore';
+import useAuthStore from '../../stores/authStore';
 
 export default function ShowUserName() {
-    const UserName = useUserStore((state) => state.user);
+    const userName = useAuthStore((state) => state.user.fullName);
 
     return (
-        <button className="flex justify-between items-center px-4 py-2 rounded gap-2 bg-stone-200  ">
-            <span>{UserName}</span>
+        <button className="flex items-center justify-between gap-2 rounded bg-stone-200 px-4 py-2">
+            <span>{userName}</span>
             <CiUser size={23} />
         </button>
     );

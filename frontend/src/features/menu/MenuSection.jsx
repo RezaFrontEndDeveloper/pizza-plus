@@ -1,11 +1,11 @@
-import { useQuery } from "@tanstack/react-query";
-import { getMenu } from "../../services/menuApi";
-import MenuCart from "./MenuCart";
-import Loading from "../../components/ui/Loading";
+import { useQuery } from '@tanstack/react-query';
+import { getMenu } from '../../services/menuApi';
+import MenuCart from './MenuCart';
+import Loading from '../../components/ui/Loading';
 
 export default function MenuSection() {
     const { data, isPending, isError, error } = useQuery({
-        queryKey: ["menu"],
+        queryKey: ['menu'],
         queryFn: getMenu,
     });
 

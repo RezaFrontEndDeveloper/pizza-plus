@@ -1,5 +1,4 @@
 import { toPersianDigits } from "../../utils/price";
-import HeadOfOrderDetails from "./HeadOfOrderDetails";
 
 export default function OrderDetailTable({ data }) {
     return (

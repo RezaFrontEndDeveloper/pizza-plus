@@ -17,19 +17,17 @@ export default function Order() {
     queryFn: () => getOrder(id),
   });
 
-  console.log(data);
-
   if (isLoading) return <Loading />;
   if (isError)
     return (
-      <div className="flex flex-col justify-center items-center h-screen">
-        <h1 className="text-3xl md:text-5xl text-stone-700">{error.message}</h1>
+      <div className="flex h-screen flex-col items-center justify-center">
+        <h1 className="text-3xl text-stone-700 md:text-5xl">{error.message}</h1>
       </div>
     );
   return (
-    <div className="w-full px-10 ">
+    <div className="w-full px-10">
       <OrderHeader />
-      <div className="flex flex-col md:flex-row justify-between gap-4 items-center">
+      <div className="flex flex-col items-center justify-between gap-4 md:flex-row">
         <div className="w-full md:w-1/2">
           <OrderInformations data={data} />
         </div>
