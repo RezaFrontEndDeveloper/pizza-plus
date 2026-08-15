@@ -3,7 +3,7 @@ import { toPersianDigits } from '../../utils/price';
 import CartButtons from '../cart/CartButtons';
 import Button from '../../components/ui/Button';
 import { toast } from 'sonner';
-
+import baseUrl from '../../services/baseUrl';
 export default function MenuCart({ pizza }) {
     const cart = useCartStore((state) => state.cart);
     console.log(cart);
@@ -19,7 +19,7 @@ export default function MenuCart({ pizza }) {
         <div className="flex flex-col items-center justify-center gap-2 rounded-xl border border-stone-200 bg-white p-4">
             <img
                 className={soldOut ? 'w-full grayscale' : 'w-full'}
-                src={`http://localhost:8000${pizza.imageUrl}`}
+                src={`${baseUrl}${pizza.imageUrl}`}
                 alt="pizza image"
             />
             <p className="text-xl font-bold text-stone-700">{name}</p>

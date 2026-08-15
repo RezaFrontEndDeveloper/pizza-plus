@@ -1,7 +1,9 @@
-export async function getMenu() {
-    const res = await fetch("http://localhost:8000/api/menu");
-    if (!res.ok) throw new Error("error in fetching data");
+import baseUrl from './baseUrl';
 
-    const data = res.json();
+export async function getMenu() {
+    const res = await fetch(`${baseUrl}/api/menu`);
+    if (!res.ok) throw new Error('error in fetching data');
+
+    const data = await res.json();
     return data;
 }

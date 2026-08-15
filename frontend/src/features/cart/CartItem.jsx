@@ -1,7 +1,7 @@
-import { MdDeleteSweep } from "react-icons/md";
-import { toPersianDigits } from "../../utils/price";
-import { useCartStore } from "../../stores/useCartStore";
-
+import { MdDeleteSweep } from 'react-icons/md';
+import { toPersianDigits } from '../../utils/price';
+import { useCartStore } from '../../stores/useCartStore';
+import baseUrl from '../../services/baseUrl';
 export default function CartItem({ pizza }) {
     const decreaseQuantity = useCartStore((state) => state.decreaseQuantity);
     const increaseQuantity = useCartStore((state) => state.increaseQuantity);
@@ -16,12 +16,12 @@ export default function CartItem({ pizza }) {
             <div className="flex min-w-0 items-center gap-3 sm:gap-4">
                 <img
                     className="w-20 shrink-0 sm:w-24 md:w-30"
-                    src={`http://localhost:8000${pizza.imageUrl}`}
+                    src={`${baseUrl}${pizza.imageUrl}`}
                     alt={name}
                 />
 
                 <div className="flex min-w-0 flex-col gap-2">
-                    <h4 className="truncate text-sm font-bold text-stone-700 sm:text-md">
+                    <h4 className="sm:text-md truncate text-sm font-bold text-stone-700">
                         {name}
                     </h4>
 
@@ -30,7 +30,7 @@ export default function CartItem({ pizza }) {
                     </p>
 
                     <div className="flex items-center gap-2">
-                        <p className="text-sm font-bold text-red-500 sm:text-md">
+                        <p className="sm:text-md text-sm font-bold text-red-500">
                             {toPersianDigits(price)}
                         </p>
 
@@ -45,7 +45,8 @@ export default function CartItem({ pizza }) {
                 <div className="flex items-center">
                     <button
                         onClick={() => increaseQuantity(id)}
-                        className="flex h-9 w-9 cursor-pointer items-center justify-center rounded border border-stone-200 text-red-500 hover:bg-red-200">
+                        className="flex h-9 w-9 cursor-pointer items-center justify-center rounded border border-stone-200 text-red-500 hover:bg-red-200"
+                    >
                         +
                     </button>
 
@@ -55,7 +56,8 @@ export default function CartItem({ pizza }) {
 
                     <button
                         onClick={() => decreaseQuantity(id)}
-                        className="flex h-9 w-9 cursor-pointer items-center justify-center rounded border border-stone-200 text-red-500 hover:bg-red-200">
+                        className="flex h-9 w-9 cursor-pointer items-center justify-center rounded border border-stone-200 text-red-500 hover:bg-red-200"
+                    >
                         -
                     </button>
                 </div>
@@ -72,7 +74,8 @@ export default function CartItem({ pizza }) {
 
                 <button
                     onClick={() => deletePizza(id)}
-                    className="rounded bg-stone-200 p-2 hover:bg-white">
+                    className="rounded bg-stone-200 p-2 hover:bg-white"
+                >
                     <MdDeleteSweep size={22} className="cursor-pointer" />
                 </button>
             </div>

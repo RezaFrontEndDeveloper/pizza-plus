@@ -1,5 +1,7 @@
+import baseUrl from './baseUrl';
+
 export async function register({ fullName, phone, password }) {
-    const res = await fetch('http://localhost:8000/api/auth/register', {
+    const res = await fetch(`${baseUrl}/api/auth/register`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -23,7 +25,7 @@ export async function register({ fullName, phone, password }) {
 }
 
 export async function login({ phone, password }) {
-    const response = await fetch('http://localhost:8000/api/auth/login', {
+    const response = await fetch(`${baseUrl}/api/auth/login`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -43,7 +45,7 @@ export async function login({ phone, password }) {
 export async function getProfile() {
     const token = localStorage.getItem('token');
 
-    const response = await fetch('http://localhost:8000/api/profile', {
+    const response = await fetch(`${baseUrl}/api/profile`, {
         headers: {
             Authorization: `Bearer ${token}`,
         },
