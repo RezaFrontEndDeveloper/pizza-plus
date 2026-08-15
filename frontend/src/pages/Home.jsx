@@ -1,9 +1,11 @@
-import CreateUserName from "../features/user/CreateUserName";
 import HomeTitle from "../components/ui/HomeTitle";
 import bg from "../assets/hero-image.png";
 import mobileBg from "../assets/hero-image-mobile.png";
+import RegisterForm from "../features/user/RegisterForm";
+import useAuthStore from "../stores/authStore";
 
 export default function Home() {
+	const user = useAuthStore(state=>state.user)
     return (
         <div
             style={{
@@ -28,7 +30,7 @@ export default function Home() {
                md:bg-(image:--bg-image)
             ">
             <HomeTitle />
-            <CreateUserName />
+					{ user ? null :<RegisterForm/>}
         </div>
     );
 }

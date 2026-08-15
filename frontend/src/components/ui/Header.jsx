@@ -1,7 +1,8 @@
 import ShowUserName from '../../features/user/ShowUserName';
-import Input from './Input';
+
 import Logo from './Logo';
 import useAuthStore from '../../stores/authStore';
+import SearchOrder from './SearchOrder';
 
 export default function Header() {
     const user = useAuthStore((state) => state.user);
@@ -13,7 +14,7 @@ export default function Header() {
             </div>
 
             <div className="w-3/4 md:w-1/3">
-                <Input variant="h-10 border border-stone-300 w-full max-w-100" />
+                <SearchOrder variant="h-10 border border-stone-300 w-full max-w-100" />
             </div>
 
             {!user ? null : (

@@ -15,12 +15,22 @@ export async function createOrder(orderData) {
 }
 
 export async function getOrder(id) {
-    const res = await fetch(`http://localhost:8000/api/orders/${id}`);
+    
 
-    if (!res.ok)
+    const token = localStorage.getItem('token');
+
+    const res = await fetch(`http://localhost:8000/api/orders/${id}`, {
+        headers: {
+            Authorization: `Bearer ${token}`,
+        },
+    });
+
+    if (!res.ok) {
         throw new Error(
-            "مشکلی در دیافت اطلاعات پیش امده لطفا مجدد سعی نمایید "
+            'مشکلی در دریافت اطلاعات پیش آمد، لطفاً مجدد سعی نمایید.'
         );
+    }
 
     return res.json();
 }
+
