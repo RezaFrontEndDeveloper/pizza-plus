@@ -1,150 +1,166 @@
-# 🍕 Fast Pizza
+# 🍕 Pizza Plus
 
-A modern pizza ordering web application built with React and a RESTful backend API.
+A full-stack pizza ordering application built with **React, Vite, Tailwind CSS, Node.js, Express, SQLite, and JWT authentication**.
 
-Fast Pizza is a practical pizza ordering application where users can browse the menu, manage their cart, place orders, authenticate with the application, and access protected features.
+Pizza Plus is a production-style food ordering application where users can browse the menu, create orders, authenticate with a phone number and password, and manage their profile and orders.
 
-The main focus of this project was building and structuring the frontend application with React and integrating it with a REST API.
-
----
-
-## 🚀 Project Overview
-
-Fast Pizza was built as a practical frontend development project to work with a real REST API and understand how different parts of a modern React application work together.
-
-The application includes:
-
-- Pizza and menu browsing
-- Shopping cart management
-- Order creation
-- Order tracking
-- User registration
-- User login
-- JWT-based authentication
-- Protected routes
-- Persistent authentication
-- Form handling
-- API integration
-- Loading and error states
-- Client-side state management
-- Server-state management
-- Responsive UI
+The project is split into a React frontend and a RESTful Express backend and is deployed online using Render.
 
 ---
 
-## 📸 Screenshots
+## 🚀 Live Demo
 
-> Screenshots will be added here.
+### Frontend
 
-### Home
+[Pizza Plus — Live Demo](https://pizza-plus-frontend.onrender.com)
 
-![Home Screenshot](./screenshots/home.png)
+### Backend API
 
-### Menu
+[Pizza Plus API](https://pizza-plus-1.onrender.com)
 
-![Menu Screenshot](./screenshots/menu.png)
-
-### Cart
-
-![Cart Screenshot](./screenshots/cart.png)
-
-### Login
-
-![Login Screenshot](./screenshots/login.png)
-
-### Order
-
-![Order Screenshot](./screenshots/order.png)
+> **Note:** Render may not be directly accessible from some networks or regions. If the live application is unavailable, try accessing it through a different network or VPN.
 
 ---
 
-# ✨ Features
+## ✨ Features
 
-## 🛒 Menu
-
-Users can:
-
-- Browse all available menu items
-- View pizza information
-- View ingredients and prices
-- See sold-out items
-- Access individual menu items
-
----
-
-## 🛍️ Shopping Cart
-
-The shopping cart allows users to:
-
-- Add pizzas
-- Remove pizzas
-- Increase item quantity
-- Decrease item quantity
-- View the total number of items
-- Calculate the cart total
-- Prepare cart data for order creation
+- 🍕 Browse pizza and food menu
+- 🔎 View individual menu items
+- 🛒 Add products to cart
+- 📦 Create and manage orders
+- 👤 User registration
+- 🔐 User login
+- 🔑 JWT-based authentication
+- 🛡️ Protected API routes
+- 👤 User profile management
+- 📋 View authenticated user's orders
+- ⚡ Fast client-side navigation with React Router
+- 📱 Responsive user interface
+- 🎨 Modern UI built with Tailwind CSS
+- 🌐 REST API architecture
+- 💾 SQLite database
+- 🚀 Frontend and backend deployment on Render
 
 ---
 
-## 📦 Orders
+## 🛠️ Tech Stack
 
-Users can:
+### Frontend
 
-- Create new orders
-- Enter customer information
-- Submit their cart
-- Choose priority delivery
-- View individual orders
-- Track order status
-- Update order information where supported
+- React
+- Vite
+- React Router
+- Tailwind CSS
+- JavaScript
+- Fetch API
+- React Hook Form
+- Zustand
+- TanStack Query
 
-The backend calculates order prices, including the priority fee.
+### Backend
 
-The frontend sends the cart and order information to the API rather than calculating the final order price itself.
+- Node.js
+- Express.js
+- SQLite
+- better-sqlite3
+- JWT
+- bcrypt
+- REST API
+- CORS
+
+### Development & Deployment
+
+- Git
+- GitHub
+- Postman
+- Render
+
+---
+
+## 🏗️ Project Architecture
+
+The project follows a simple full-stack architecture:
+
+```text
+                    ┌───────────────────┐
+                    │      Client       │
+                    │   React + Vite    │
+                    └─────────┬─────────┘
+                              │
+                              │ HTTP / REST API
+                              ▼
+                    ┌───────────────────┐
+                    │      Backend      │
+                    │ Node.js + Express │
+                    └─────────┬─────────┘
+                              │
+                              ▼
+                    ┌───────────────────┐
+                    │      SQLite       │
+                    │     Database      │
+                    └───────────────────┘
+```
+
+The frontend communicates with the backend through REST API endpoints.
+
+Authentication is handled using JWT tokens.
+
+---
+
+## 📁 Project Structure
+
+```text
+pizza-plus/
+│
+├── frontend/
+│   ├── src/
+│   │   ├── components/
+│   │   ├── features/
+│   │   ├── pages/
+│   │   ├── services/
+│   │   ├── stores/
+│   │   ├── App.jsx
+│   │   └── main.jsx
+│   │
+│   ├── public/
+│   ├── package.json
+│   ├── vite.config.js
+│   └── ...
+│
+├── backend/
+│   ├── controllers/
+│   ├── db/
+│   ├── images/
+│   ├── middleware/
+│   ├── routes/
+│   ├── utils/
+│   ├── database.js
+│   ├── server.js
+│   ├── package.json
+│   └── ...
+│
+└── README.md
+```
 
 ---
 
 # 🔐 Authentication
 
-The application implements JWT-based authentication.
+Pizza Plus uses **JWT-based authentication**.
 
-Users can:
+### Registration
 
-- Register
-- Login
-- Stay authenticated after refreshing the browser
-- Access protected routes
-- Retrieve their authenticated profile
-- Logout
+Users can create an account using:
 
-The authentication flow is:
+- Full name
+- Phone number
+- Password
 
-```text
-Register / Login
-       ↓
-    REST API
-       ↓
-   JWT + User
-       ↓
-Token → localStorage
-User  → Zustand
-       ↓
-AuthInitializer
-       ↓
-GET /api/profile
-       ↓
-Restore authenticated user
-       ↓
-Protected Routes
+```http
+POST /api/auth/register
 ```
 
----
-
-# 🔑 Authentication Flow
-
-## 1. Registration
-
-The user submits their information:
+Example request:
 
 ```json
 {
@@ -154,36 +170,17 @@ The user submits their information:
 }
 ```
 
-The frontend sends:
-
-```http
-POST /api/auth/register
-```
-
-The backend creates the user and returns:
-
-```json
-{
-  "token": "JWT_TOKEN",
-  "user": {
-    "id": 1,
-    "fullName": "Ali Rezaei",
-    "phone": "09120000000"
-  }
-}
-```
+The server returns a JWT token and user information.
 
 ---
 
-## 2. Login
-
-The user submits their phone number and password.
+### Login
 
 ```http
 POST /api/auth/login
 ```
 
-Request:
+Example:
 
 ```json
 {
@@ -192,474 +189,108 @@ Request:
 }
 ```
 
-The backend returns:
+After successful authentication, the API returns a JWT token.
 
-```json
-{
-  "token": "JWT_TOKEN",
-  "user": {
-    "id": 1,
-    "fullName": "Ali Rezaei",
-    "phone": "09120000000"
-  }
-}
-```
-
-The frontend then stores:
-
-```text
-JWT
-↓
-localStorage
-```
-
-and:
-
-```text
-User
-↓
-Zustand
-```
-
----
-
-# 🔄 Authentication Persistence
-
-One of the important parts of the project is restoring authentication after a browser refresh.
-
-Zustand stores state in memory. Therefore, after a page refresh:
-
-```text
-user = null
-```
-
-However, the JWT is still available in localStorage.
-
-The application uses an `AuthInitializer` to restore the authenticated user.
-
-```text
-Browser Refresh
-       ↓
-AuthInitializer
-       ↓
-Read token from localStorage
-       ↓
-Is there a token?
-   ↙           ↘
- No             Yes
- ↓               ↓
-Finish       GET /api/profile
-                 ↓
-          Backend verifies JWT
-                 ↓
-            User returned
-                 ↓
-            setUser(user)
-                 ↓
-       Authentication restored
-```
-
----
-
-# 🛡️ Protected Routes
-
-Protected pages are handled through a custom `ProtectedRoute` component.
-
-The application first checks whether authentication initialization is still running.
-
-```text
-Application starts
-       ↓
-AuthInitializer
-       ↓
-isLoading = true
-       ↓
-Authentication check
-       ↓
-isLoading = false
-       ↓
-ProtectedRoute
-       ↓
-     User?
-   ↙       ↘
- Yes        No
- ↓           ↓
-Render     /login
-```
-
-This prevents an authenticated user from being incorrectly redirected to the login page during the initial authentication check.
-
----
-
-# 🧠 Client State vs Server State
-
-The application separates client-side state from server-side data.
-
-## Client State
-
-Zustand is used for application state such as:
-
-- Authenticated user
-- Authentication state
-- Logout state
-
-## Server State
-
-TanStack Query is used for data received from the backend, such as:
-
-- Menu data
-- Orders
-- API loading states
-- API errors
-- Mutations
-- Server-side cache
-
-This separation makes responsibilities clearer and keeps the application easier to maintain.
-
----
-
-# 🧰 Tech Stack
-
-## Frontend
-
-| Technology      | Purpose                      |
-| --------------- | ---------------------------- |
-| React           | Building the user interface  |
-| React Router    | Client-side routing          |
-| Zustand         | Client-side state management |
-| TanStack Query  | Server-state management      |
-| React Hook Form | Form handling and validation |
-| Tailwind CSS    | Styling and responsive UI    |
-| Fetch API       | HTTP requests                |
-| React Icons     | Icons                        |
-
-## Backend
-
-The frontend communicates with a REST API built with:
-
-| Technology     | Purpose            |
-| -------------- | ------------------ |
-| Node.js        | Runtime            |
-| Express        | REST API           |
-| SQLite         | Database           |
-| better-sqlite3 | SQLite integration |
-| JWT            | Authentication     |
-| bcrypt         | Password hashing   |
-
-> The backend API was provided for this project. My main focus was designing and implementing the React frontend, integrating the REST API, implementing authentication, managing application state, handling forms, and building the user interface.
-
----
-
-# 🏗️ Frontend Architecture
-
-The frontend is organized around separation of concerns between UI components, pages, state management, API services, hooks, and routing.
-
-```text
-frontend/
-│
-├── src/
-│   │
-│   ├── components/
-│   │   ├── ui/
-│   │   └── ...
-│   │
-│   ├── pages/
-│   │   ├── Home/
-│   │   ├── Menu/
-│   │   ├── Cart/
-│   │   ├── Login/
-│   │   ├── Register/
-│   │   ├── Order/
-│   │   └── ...
-│   │
-│   ├── layouts/
-│   │
-│   ├── hooks/
-│   │
-│   ├── services/
-│   │   └── auth.js
-│   │
-│   ├── stores/
-│   │   └── authStore.js
-│   │
-│   └── App.jsx
-│
-└── package.json
-```
-
----
-
-# 🔄 Application Data Flow
-
-The general data flow is:
-
-```text
-User Interaction
-       ↓
-React Component
-       ↓
-Hook / Service
-       ↓
-REST API
-       ↓
-Backend
-       ↓
-JSON Response
-       ↓
-State / TanStack Query
-       ↓
-UI Update
-```
-
-This structure helps keep API communication separate from presentation components.
-
----
-
-# 🌐 API Integration
-
-The frontend communicates with the backend through REST API endpoints.
-
-## Authentication
+The frontend stores the authentication token and sends it with protected requests using:
 
 ```http
-POST /api/auth/register
-POST /api/auth/login
+Authorization: Bearer <token>
 ```
 
-## Menu
+---
 
-```http
-GET /api/menu
-GET /api/menu/:id
-```
+## 🛡️ Protected Routes
 
-## Orders
+The following API routes require authentication:
 
 ```http
 GET /api/orders
-GET /api/orders/:id
-POST /api/orders
-PATCH /api/orders/:id
-```
-
-## Profile
-
-```http
 GET /api/profile
 PATCH /api/profile
 ```
 
-Protected requests use:
-
-```http
-Authorization: Bearer <token>
-```
+Public endpoints include menu operations and order operations that are intentionally exposed by the backend API.
 
 ---
 
-# 👤 Profile
+# 📡 API
 
-Authenticated users can retrieve their profile:
+## Authentication
 
-```http
-GET /api/profile
-```
-
-with:
-
-```http
-Authorization: Bearer <token>
-```
-
-The backend returns the current authenticated user.
-
-Example:
-
-```json
-{
-  "id": 1,
-  "fullName": "Ali Rezaei",
-  "phone": "09120000000",
-  "createdAt": "2026-08-07 07:52:29"
-}
-```
+| Method | Endpoint             | Authentication | Description           |
+| ------ | -------------------- | -------------- | --------------------- |
+| POST   | `/api/auth/register` | No             | Register a new user   |
+| POST   | `/api/auth/login`    | No             | Login and receive JWT |
 
 ---
 
-# 📝 Form Handling
+## Menu
 
-Forms are implemented using React Hook Form.
-
-The application uses React Hook Form for:
-
-- Login
-- Registration
-- Order creation
-- Customer information
-
-Example:
-
-```jsx
-const {
-  register,
-  handleSubmit,
-  formState: { errors },
-} = useForm();
-```
-
-Form validation is handled before sending requests to the backend.
+| Method | Endpoint        | Authentication | Description            |
+| ------ | --------------- | -------------- | ---------------------- |
+| GET    | `/api/menu`     | No             | Get all menu items     |
+| GET    | `/api/menu/:id` | No             | Get a single menu item |
 
 ---
 
-# ⏳ Loading & Error Handling
+## Orders
 
-Asynchronous operations are handled with loading and error states.
+| Method | Endpoint          | Authentication | Description                  |
+| ------ | ----------------- | -------------- | ---------------------------- |
+| GET    | `/api/orders`     | Yes            | Get current user's orders    |
+| GET    | `/api/orders/:id` | No             | Get a specific order         |
+| POST   | `/api/orders`     | Optional       | Create a new order           |
+| PATCH  | `/api/orders/:id` | No             | Update order status/priority |
 
-For example, during login:
+---
+
+## Profile
+
+| Method | Endpoint       | Authentication | Description         |
+| ------ | -------------- | -------------- | ------------------- |
+| GET    | `/api/profile` | Yes            | Get user profile    |
+| PATCH  | `/api/profile` | Yes            | Update user profile |
+
+---
+
+# 💾 Database
+
+The backend uses **SQLite** with `better-sqlite3`.
+
+The database is automatically created when the backend starts.
+
+Main tables include:
 
 ```text
-Submit
-  ↓
-Loading
-  ↓
-API Request
-  ↓
- ┌───────────────┐
- ↓               ↓
-Success         Error
- ↓               ↓
-Save token      Show error
- ↓
-Set user
- ↓
-Navigate
+users
+menu
+orders
+order_items
 ```
 
-A loading state prevents duplicate submissions while the request is in progress.
+The database is seeded with pizza and food menu data when initialized.
 
-Errors returned from the API are displayed to the user.
-
----
-
-# 🔎 API Debugging
-
-During development, API requests were inspected using browser DevTools and API testing tools.
-
-Important information to inspect includes:
-
-- Request URL
-- HTTP method
-- Request body
-- Request headers
-- Authorization header
-- Response status
-- Response body
-- Network errors
-
-For authenticated requests:
-
-```http
-GET /api/profile
-
-Authorization: Bearer eyJhbGciOi...
-```
-
-Common status codes used by the API include:
-
-| Status | Meaning            |
-| ------ | ------------------ |
-| 200    | Successful request |
-| 201    | Resource created   |
-| 400    | Bad request        |
-| 401    | Unauthorized       |
-| 404    | Resource not found |
-| 500    | Server error       |
+No external database server is required for local development.
 
 ---
 
-# 📱 Responsive Design
+# ⚙️ Local Development
 
-The interface is built with Tailwind CSS and designed to work across different screen sizes.
-
-The UI supports:
-
-- Desktop
-- Tablet
-- Mobile
-
-The goal was to keep the ordering experience simple, clear, and responsive.
-
----
-
-# 🧪 Testing Authentication
-
-The authentication flow can be tested with the following checklist:
-
-- [ ] Register with valid information
-- [ ] Register with invalid information
-- [ ] Login with valid credentials
-- [ ] Login with incorrect credentials
-- [ ] Verify the JWT in localStorage
-- [ ] Verify the authenticated user in Zustand
-- [ ] Refresh the browser
-- [ ] Verify that authentication is restored
-- [ ] Access a protected route while authenticated
-- [ ] Try accessing a protected route while logged out
-- [ ] Logout
-- [ ] Refresh after logout
-- [ ] Test an invalid token
-- [ ] Test expired authentication
-
----
-
-# 🛠️ Getting Started
-
-## Prerequisites
-
-Make sure you have installed:
-
-- Node.js
-- npm
-
----
-
-## Clone the Repository
+## 1. Clone the repository
 
 ```bash
-git clone YOUR_REPOSITORY_URL
+git clone https://github.com/RezaFrontEndDeveloper/pizza-plus.git
 ```
 
 ```bash
-cd fast-pizza
+cd pizza-plus
 ```
 
 ---
 
-# Frontend Setup
+# 🖥️ Run the Backend
 
-Navigate to the frontend:
-
-```bash
-cd frontend
-```
-
-Install dependencies:
-
-```bash
-npm install
-```
-
-Start the development server:
-
-```bash
-npm run dev
-```
-
----
-
-# Backend Setup
-
-Open another terminal and navigate to the backend:
+Navigate to the backend directory:
 
 ```bash
 cd backend
@@ -671,260 +302,304 @@ Install dependencies:
 npm install
 ```
 
-Create the environment file:
+Create your environment file:
 
 ```bash
 cp .env.example .env
 ```
 
-Configure:
+On Windows PowerShell you can use:
+
+```powershell
+Copy-Item .env.example .env
+```
+
+Configure your environment variables:
 
 ```env
 PORT=8000
-JWT_SECRET=your-secret-key
+JWT_SECRET=your_secret_key
 JWT_EXPIRES_IN=7d
 ```
 
-Start the backend:
+Start the development server:
 
 ```bash
 npm run dev
 ```
 
-The backend runs on:
+The API will be available at:
 
 ```text
 http://localhost:8000
 ```
 
----
-
-# 🗄️ Database
-
-The backend uses SQLite.
-
-The database is automatically created when the backend starts.
-
-The database contains:
-
-- Users
-- Menu items
-- Orders
-- Order items
-
-No external database server is required for local development.
-
----
-
-# 📂 Repository Structure
-
-The repository can be organized as:
+You can verify the API by visiting:
 
 ```text
-fast-pizza/
-│
-├── README.md
-│
-├── frontend/
-│   ├── src/
-│   ├── public/
-│   ├── package.json
-│   └── README.md
-│
-└── backend/
-    ├── server.js
-    ├── database.js
-    ├── routes/
-    ├── controllers/
-    ├── middleware/
-    ├── utils/
-    ├── db/
-    ├── images/
-    ├── package.json
-    └── README.md
+http://localhost:8000/api
 ```
 
-The root README provides an overview of the complete project.
+---
 
-The frontend README can contain frontend-specific technical documentation.
+# 🌐 Run the Frontend
 
-The backend README contains detailed API documentation.
+Open another terminal and navigate to:
+
+```bash
+cd frontend
+```
+
+Install dependencies:
+
+```bash
+npm install
+```
+
+Start the Vite development server:
+
+```bash
+npm run dev
+```
+
+The frontend will normally be available at:
+
+```text
+http://localhost:5173
+```
+
+---
+
+# 🔗 Frontend API Configuration
+
+The frontend communicates with the backend through a shared API base URL.
+
+The current production API URL is:
+
+```text
+https://pizza-plus.onrender.com
+```
+
+API requests are built from this base URL.
+
+For example:
+
+```text
+https://pizza-plus.onrender.com/api/menu
+```
+
+and:
+
+```text
+https://pizza-plus.onrender.com/api/auth/login
+```
+
+---
+
+# 🚀 Deployment
+
+The project is deployed using Render.
+
+### Backend
+
+The backend runs as a Node.js web service.
+
+Production configuration:
+
+```text
+Build Command:
+npm install
+```
+
+```text
+Start Command:
+npm start
+```
+
+The server uses:
+
+```js
+process.env.PORT || 8000;
+```
+
+and listens on:
+
+```text
+0.0.0.0
+```
+
+so it can receive external requests in the production environment.
+
+### Frontend
+
+The frontend is deployed as a static site.
+
+```text
+Root Directory:
+frontend
+```
+
+```text
+Build Command:
+npm install && npm run build
+```
+
+```text
+Publish Directory:
+dist
+```
+
+The frontend is built using Vite and served as a production static application.
+
+---
+
+# 🧪 Testing the API
+
+Postman can be used to test the REST API independently from the frontend.
+
+Example registration request:
+
+```http
+POST /api/auth/register
+Content-Type: application/json
+```
+
+```json
+{
+  "fullName": "Ali Rezaei",
+  "phone": "09120000000",
+  "password": "secret123"
+}
+```
+
+Example login request:
+
+```http
+POST /api/auth/login
+Content-Type: application/json
+```
+
+```json
+{
+  "phone": "09120000000",
+  "password": "secret123"
+}
+```
+
+The returned JWT can then be used to test protected endpoints.
+
+---
+
+# 🔒 Security Notes
+
+This project implements basic authentication using:
+
+- JWT for authentication
+- bcrypt for password hashing
+- Authorization headers for protected requests
+- Environment variables for server configuration
+
+The project is intended as a learning and portfolio project and is not designed as a production banking or enterprise-grade security system.
 
 ---
 
 # 📚 What I Learned
 
-This project was built as a practical frontend development project focused on working with a real REST API and building a complete React application around it.
+Building Pizza Plus helped me practice several real-world frontend and full-stack concepts:
 
-During development, I practiced:
-
-- Building reusable React components
+- Building a complete React application
+- React component architecture
 - React Router
-- Nested routes
-- Protected routes
-- React Hook Form
+- Client-side state management
+- Server state management
+- Form handling and validation
 - REST API integration
-- Fetch API
-- Async JavaScript
+- Authentication and authorization
 - JWT authentication
-- Authentication persistence
-- Zustand
-- TanStack Query
-- Loading states
-- Error handling
-- API debugging
-- Client state vs server state
-- Responsive UI development
-- Frontend architecture
-
-One of the most important parts of the project was understanding the authentication lifecycle instead of treating login as simply a form submission.
+- Protected routes
+- Working with backend APIs
+- Debugging API requests with Postman
+- Git and GitHub workflows
+- Production builds with Vite
+- Deploying frontend applications
+- Deploying Node.js APIs
+- Debugging production deployment issues
+- Connecting a deployed frontend to a deployed backend
 
 ---
 
-# 🧠 Authentication Mental Model
+# 🐛 Debugging & Deployment Experience
 
-The authentication architecture can be summarized as:
+During deployment, the application required several production-specific fixes.
 
-```text
-LOGIN
-  ↓
-JWT
-  ↓
-localStorage
-  ↓
-Authenticated Request
-  ↓
-Authorization: Bearer <token>
-  ↓
-Backend
-  ↓
-Current User
-  ↓
-Zustand
-  ↓
-React UI
-  ↓
-ProtectedRoute
-  ↓
-Allow / Redirect
-```
+One of the important issues was the backend server binding.
 
-After a browser refresh:
+The server initially listened on:
 
 ```text
-Browser Refresh
-       ↓
-Zustand resets
-       ↓
-Token remains in localStorage
-       ↓
-AuthInitializer
-       ↓
-GET /api/profile
-       ↓
-Backend validates JWT
-       ↓
-User returned
-       ↓
-Zustand restored
-       ↓
-Protected application
+localhost
 ```
 
----
+which prevented external requests from reaching the API.
 
-# 🔮 Future Improvements
+The server was updated to listen on:
 
-Possible improvements for future versions include:
+```text
+0.0.0.0
+```
 
-- Refresh token strategy
-- HttpOnly cookie-based authentication
-- Improved authentication security
-- Centralized API error handling
-- Axios interceptors
-- Advanced form validation
-- Unit tests
-- Integration tests
-- End-to-end testing
-- Improved accessibility
-- Production deployment
-- Better API caching strategies
-- More advanced authorization
+and use the port supplied by the hosting platform:
+
+```js
+const PORT = process.env.PORT || 8000;
+
+app.listen(PORT, "0.0.0.0");
+```
+
+Another deployment issue was caused by filename case sensitivity.
+
+The application worked locally on Windows but failed during the Linux-based production build because Linux treats filenames with different capitalization as different files.
+
+For example:
+
+```text
+OrderInformations.jsx
+```
+
+and:
+
+```text
+orderInformations.jsx
+```
+
+must be referenced consistently.
+
+These issues provided practical experience with the differences between local development environments and production environments.
 
 ---
 
 # 🎯 Project Goals
 
-The main goal of this project was not only to build a working pizza ordering application, but also to understand how a modern frontend communicates with a backend API.
+The main goal of Pizza Plus was to build a realistic food ordering application while practicing modern frontend development and learning how frontend applications communicate with backend services.
 
-The project helped me practice the complete flow:
-
-```text
-UI
-↓
-Form
-↓
-API Request
-↓
-Backend
-↓
-Response
-↓
-State Management
-↓
-UI Update
-```
-
-And for authentication:
-
-```text
-Login
-↓
-JWT
-↓
-Token Storage
-↓
-Authenticated Request
-↓
-User Restoration
-↓
-Protected Routes
-```
+The project also provided practical experience with deploying a full-stack application and debugging issues that only appear in production environments.
 
 ---
 
-# 👨‍💻 About This Project
+# 👨‍💻 Author
 
-Fast Pizza is a practical React frontend project focused on building a real-world user experience around a REST API.
+**Reza**
 
-The project focuses on:
+Frontend Developer focused on building modern web applications with React and JavaScript.
 
-**React + REST APIs + JWT Authentication + State Management + Routing + Forms + Responsive UI**
+### GitHub
 
-The backend API was provided as the service layer for the application, while the frontend was designed and implemented as the main focus of this project.
-
-The goal was to move beyond isolated React exercises and practice building a complete frontend application that communicates with a real backend.
+[RezaFrontEndDeveloper](https://github.com/RezaFrontEndDeveloper)
 
 ---
 
-## ⭐ Key Technologies
+## ⭐ If you like this project
 
-```text
-React
-React Router
-TanStack Query
-React Hook Form
-Zustand
-Tailwind CSS
-Fetch API
-REST API
-JWT Authentication
-```
+Feel free to explore the code, open an issue, or use the project as a learning reference.
 
----
-
-## 📌 Status
-
-🚧 **Project Status: Completed for learning and portfolio purposes**
-
-Future improvements and production-level features may be added over time.
+Built with ❤️ and React.
